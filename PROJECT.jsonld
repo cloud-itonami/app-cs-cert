@@ -1,0 +1,151 @@
+{
+  "@context": [
+    "https://schema.org/",
+    {
+      "@version": 1.1,
+      "@vocab": "https://resources.etzhayyim.com/ontology#",
+      "@base": "https://resources.etzhayyim.com/ontology#",
+      "id": "@id",
+      "type": "@type",
+      "schema": "https://schema.org/",
+      "etzhayyim": "https://etzhayyim.com/schemas/",
+      "dct": "http://purl.org/dc/terms/",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "name": "dct:title",
+      "description": "dct:description",
+      "createdAt": {
+        "@id": "dct:created",
+        "@type": "xsd:dateTime"
+      },
+      "updatedAt": {
+        "@id": "dct:modified",
+        "@type": "xsd:dateTime"
+      },
+      "version": "dct:hasVersion"
+    }
+  ],
+  "@type": "Project",
+  "@id": "urn:etzhayyim:project:etzhayyim-project-cs-cert",
+  "identifier": "etzhayyim-project-cs-cert",
+  "name": "Etzhayyim CS Certified",
+  "description": "サイバーセキュリティ診断済みサイトに認証ロゴ (Etzhayyim CS Certified バッジ) を発行・表示するサービス。SSL trust seal のように、セキュリティ診断を完了したサイトが信頼性を証明するバッジを埋め込める。certs.etzhayyim.com で公開。",
+  "url": "https://certs.etzhayyim.com",
+  "version": "0.1.0",
+  "codeRepository": "https://github.com/etzhayyim/etzhayyim-root",
+  "author": {
+    "@type": "Organization",
+    "name": "etzhayyim",
+    "url": "https://etzhayyim.com"
+  },
+  "hasPart": [
+    {
+      "@type": "WebAPI",
+      "name": "cs-cert-api",
+      "url": "https://certs.etzhayyim.com/api/grpc",
+      "description": "Connect gRPC-Web API for certificate issuance, verification, and badge serving"
+    },
+    {
+      "@type": "WebSite",
+      "name": "cs-cert-portal",
+      "url": "https://certs.etzhayyim.com",
+      "description": "公開ポータル: 認証バッジ検証、診断申請、認証済みサイト一覧"
+    }
+  ],
+  "etzhayyim:resourceBoundary": "project",
+  "etzhayyim:capability": [
+    "Security assessment request intake and tracking",
+    "Certificate issuance after security audit completion",
+    "Embeddable trust badge (SVG/JS widget) generation",
+    "Real-time certificate verification API",
+    "Public certificate transparency log"
+  ],
+  "etzhayyim:certificationLevels": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Etzhayyim CS Basic",
+      "identifier": "cs-basic",
+      "description": "基本セキュリティ診断完了。OWASP Top 10 チェック、SSL/TLS 設定検証、基本ヘッダー検査。",
+      "etzhayyim:validityDays": 90,
+      "etzhayyim:badgeColor": "#4CAF50",
+      "etzhayyim:checks": [
+        "OWASP Top 10",
+        "SSL/TLS configuration",
+        "Security headers (HSTS, CSP, X-Frame-Options)",
+        "DNS security (DNSSEC, CAA)",
+        "Cookie security flags"
+      ]
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Etzhayyim CS Standard",
+      "identifier": "cs-standard",
+      "description": "標準セキュリティ診断完了。Basic に加え、脆弱性スキャン、API セキュリティ検証、認証フロー検査。",
+      "etzhayyim:validityDays": 180,
+      "etzhayyim:badgeColor": "#2196F3",
+      "etzhayyim:checks": [
+        "All Basic checks",
+        "Automated vulnerability scanning",
+        "API endpoint security review",
+        "Authentication flow analysis",
+        "Input validation testing",
+        "Error handling review"
+      ]
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Etzhayyim CS Advanced",
+      "identifier": "cs-advanced",
+      "description": "高度セキュリティ診断完了。Standard に加え、手動ペネトレーションテスト、ソースコードレビュー、インフラ診断。",
+      "etzhayyim:validityDays": 365,
+      "etzhayyim:badgeColor": "#9C27B0",
+      "etzhayyim:checks": [
+        "All Standard checks",
+        "Manual penetration testing",
+        "Source code security review",
+        "Infrastructure security audit",
+        "Business logic testing",
+        "Compliance mapping (ISO 27001, SOC 2)"
+      ]
+    }
+  ],
+  "etzhayyim:dodafMapping": {
+    "DIV-2": "Certificate data classes and JSON-LD artifacts",
+    "StdV-1": "JSON-LD/SHACL for certificate records, SVG badge format, JS embed widget"
+  },
+  "etzhayyim:scheduler": {
+    "@type": "CreativeWork",
+    "name": "Etzhayyim CS Certified Scheduler",
+    "identifier": "etzhayyim-project-cs-cert/scheduler",
+    "milestones": [
+      {
+        "@type": "CreativeWork",
+        "name": "Certificate schema and SHACL shapes",
+        "description": "Define etzhayyim:CsCertificate, etzhayyim:CsAssessment, etzhayyim:CsBadge entity types with SHACL validation.",
+        "status": "Done",
+        "dueDate": "2026-02-28"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Badge wasm component with SVG generation",
+        "description": "SpinApp component for badge SVG rendering, embed script serving, and certificate verification API.",
+        "status": "Done",
+        "dueDate": "2026-02-28"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Assessment intake and certificate issuance flow",
+        "description": "Connect gRPC API for assessment requests, result recording, and automatic certificate generation.",
+        "status": "Planned",
+        "dueDate": "2026-03-15"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Public portal on certs.etzhayyim.com",
+        "description": "Static site with certificate search, verification page, and assessment request form.",
+        "status": "Planned",
+        "dueDate": "2026-03-31"
+      }
+    ],
+    "blockers": []
+  }
+}

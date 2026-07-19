@@ -1,0 +1,75 @@
+{
+  "@context": [
+    "https://schema.org/",
+    {
+      "etzhayyim": "https://resources.etzhayyim.com/ontology#",
+      "prov": "http://www.w3.org/ns/prov#"
+    }
+  ],
+  "@type": "ItemList",
+  "name": "Etzhayyim CS Certified — Sample Certificates",
+  "description": "セキュリティ診断済み認証のサンプルデータ。certs.etzhayyim.com で公開される認証バッジの参照実装。",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "etzhayyim:CsCertificate",
+        "@id": "https://certs.etzhayyim.com/cert/etzhayyim-cs-a1b2c3d4",
+        "identifier": "etzhayyim-cs-a1b2c3d4",
+        "etzhayyim:subjectDomain": "etzhayyim.com",
+        "etzhayyim:subjectOrgName": "Etzhayyim Inc.",
+        "etzhayyim:certLevel": "cs-advanced",
+        "etzhayyim:certStatus": "active",
+        "etzhayyim:issuedAt": "2026-02-01T00:00:00Z",
+        "etzhayyim:expiresAt": "2027-02-01T00:00:00Z",
+        "etzhayyim:assessmentId": "assess-etzhayyim-ai-20260201",
+        "etzhayyim:overallScore": 96.5,
+        "etzhayyim:verificationUrl": "https://certs.etzhayyim.com/verify/etzhayyim-cs-a1b2c3d4",
+        "etzhayyim:badgeEmbed": "<script src=\"https://certs.etzhayyim.com/badge/etzhayyim-cs-a1b2c3d4.js\" async></script>",
+        "prov:generatedAtTime": "2026-02-01T00:00:00Z"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "etzhayyim:CsAssessment",
+        "@id": "https://certs.etzhayyim.com/assessment/assess-etzhayyim-ai-20260201",
+        "identifier": "assess-etzhayyim-ai-20260201",
+        "etzhayyim:subjectDomain": "etzhayyim.com",
+        "etzhayyim:certLevel": "cs-advanced",
+        "actionStatus": "completed",
+        "etzhayyim:assessorId": "etzhayyim-security-team",
+        "etzhayyim:checksCompleted": 42,
+        "etzhayyim:checksFailed": 0,
+        "etzhayyim:overallScore": 96.5,
+        "etzhayyim:findings": [
+          {
+            "@type": "etzhayyim:CsFinding",
+            "identifier": "finding-001",
+            "etzhayyim:assessmentId": "assess-etzhayyim-ai-20260201",
+            "name": "HSTS max-age below recommended minimum",
+            "description": "Strict-Transport-Security max-age is 15768000 (6 months). Recommended: 31536000 (1 year) or higher.",
+            "etzhayyim:findingSeverity": "low",
+            "etzhayyim:findingCategory": "header-security",
+            "etzhayyim:findingStatus": "remediated",
+            "prov:generatedAtTime": "2026-02-01T00:00:00Z"
+          },
+          {
+            "@type": "etzhayyim:CsFinding",
+            "identifier": "finding-002",
+            "etzhayyim:assessmentId": "assess-etzhayyim-ai-20260201",
+            "name": "CAA record present and valid",
+            "description": "DNS CAA records correctly restrict certificate issuance to authorized CAs.",
+            "etzhayyim:findingSeverity": "informational",
+            "etzhayyim:findingCategory": "dns-security",
+            "etzhayyim:findingStatus": "accepted",
+            "prov:generatedAtTime": "2026-02-01T00:00:00Z"
+          }
+        ],
+        "prov:generatedAtTime": "2026-02-01T00:00:00Z"
+      }
+    }
+  ]
+}

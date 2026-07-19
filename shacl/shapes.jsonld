@@ -1,0 +1,281 @@
+{
+  "@context": [
+    "https://resources.etzhayyim.com/ontology/cs-cert/context.jsonld",
+    {
+      "sh": "http://www.w3.org/ns/shacl#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "etzhayyim:CsCertificateShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "etzhayyim:CsCertificate",
+      "sh:property": [
+        {
+          "sh:path": "schema:identifier",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:maxCount": 1,
+          "sh:pattern": "^etzhayyim-cs-[a-z0-9]{8,}$"
+        },
+        {
+          "sh:path": "etzhayyim:subjectDomain",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:pattern": "^[a-z0-9][a-z0-9.-]+\\.[a-z]{2,}$"
+        },
+        {
+          "sh:path": "etzhayyim:subjectOrgName",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "etzhayyim:certLevel",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:in": [
+            "cs-basic",
+            "cs-standard",
+            "cs-advanced"
+          ]
+        },
+        {
+          "sh:path": "etzhayyim:certStatus",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:in": [
+            "active",
+            "expired",
+            "revoked",
+            "suspended"
+          ]
+        },
+        {
+          "sh:path": "etzhayyim:issuedAt",
+          "sh:datatype": "xsd:dateTime",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "etzhayyim:expiresAt",
+          "sh:datatype": "xsd:dateTime",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "etzhayyim:assessmentId",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "etzhayyim:overallScore",
+          "sh:datatype": "xsd:decimal",
+          "sh:minCount": 1,
+          "sh:minInclusive": 0,
+          "sh:maxInclusive": 100
+        },
+        {
+          "sh:path": "etzhayyim:verificationUrl",
+          "sh:datatype": "xsd:anyURI",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "prov:generatedAtTime",
+          "sh:datatype": "xsd:dateTime",
+          "sh:minCount": 1
+        }
+      ]
+    },
+    {
+      "@id": "etzhayyim:CsAssessmentShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "etzhayyim:CsAssessment",
+      "sh:property": [
+        {
+          "sh:path": "schema:identifier",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:maxCount": 1
+        },
+        {
+          "sh:path": "etzhayyim:subjectDomain",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "etzhayyim:certLevel",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:in": [
+            "cs-basic",
+            "cs-standard",
+            "cs-advanced"
+          ]
+        },
+        {
+          "sh:path": "schema:actionStatus",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:in": [
+            "requested",
+            "in-progress",
+            "completed",
+            "failed"
+          ]
+        },
+        {
+          "sh:path": "etzhayyim:assessorId",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "etzhayyim:checksCompleted",
+          "sh:datatype": "xsd:integer",
+          "sh:minCount": 0
+        },
+        {
+          "sh:path": "etzhayyim:checksFailed",
+          "sh:datatype": "xsd:integer",
+          "sh:minCount": 0
+        },
+        {
+          "sh:path": "etzhayyim:overallScore",
+          "sh:datatype": "xsd:decimal",
+          "sh:minInclusive": 0,
+          "sh:maxInclusive": 100
+        },
+        {
+          "sh:path": "prov:generatedAtTime",
+          "sh:datatype": "xsd:dateTime",
+          "sh:minCount": 1
+        }
+      ]
+    },
+    {
+      "@id": "etzhayyim:CsFindingShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "etzhayyim:CsFinding",
+      "sh:property": [
+        {
+          "sh:path": "schema:identifier",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:maxCount": 1
+        },
+        {
+          "sh:path": "etzhayyim:assessmentId",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "schema:name",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "schema:description",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "etzhayyim:findingSeverity",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:in": [
+            "critical",
+            "high",
+            "medium",
+            "low",
+            "informational"
+          ]
+        },
+        {
+          "sh:path": "etzhayyim:findingCategory",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:in": [
+            "injection",
+            "broken-auth",
+            "sensitive-data",
+            "xxe",
+            "broken-access",
+            "misconfiguration",
+            "xss",
+            "deserialization",
+            "components",
+            "logging",
+            "ssrf",
+            "cryptographic-failure",
+            "ssl-tls",
+            "header-security",
+            "dns-security"
+          ]
+        },
+        {
+          "sh:path": "etzhayyim:findingStatus",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:in": [
+            "open",
+            "remediated",
+            "accepted",
+            "false-positive"
+          ]
+        },
+        {
+          "sh:path": "prov:generatedAtTime",
+          "sh:datatype": "xsd:dateTime",
+          "sh:minCount": 1
+        }
+      ]
+    },
+    {
+      "@id": "etzhayyim:CsBadgeShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "etzhayyim:CsBadge",
+      "sh:property": [
+        {
+          "sh:path": "schema:identifier",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:maxCount": 1
+        },
+        {
+          "sh:path": "etzhayyim:certLevel",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:in": [
+            "cs-basic",
+            "cs-standard",
+            "cs-advanced"
+          ]
+        },
+        {
+          "sh:path": "etzhayyim:badgeFormat",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:in": [
+            "svg",
+            "png",
+            "js-widget"
+          ]
+        },
+        {
+          "sh:path": "etzhayyim:badgeColor",
+          "sh:datatype": "xsd:string",
+          "sh:minCount": 1,
+          "sh:pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        {
+          "sh:path": "etzhayyim:verificationUrl",
+          "sh:datatype": "xsd:anyURI",
+          "sh:minCount": 1
+        },
+        {
+          "sh:path": "prov:generatedAtTime",
+          "sh:datatype": "xsd:dateTime",
+          "sh:minCount": 1
+        }
+      ]
+    }
+  ]
+}

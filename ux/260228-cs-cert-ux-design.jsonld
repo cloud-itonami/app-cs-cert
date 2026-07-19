@@ -1,0 +1,172 @@
+{
+  "@context": [
+    "https://schema.org/",
+    {
+      "etzhayyim": "https://etzhayyim.com/schemas/",
+      "ux": "https://etzhayyim.com/schemas/ux#"
+    }
+  ],
+  "@type": "CreativeWork",
+  "identifier": "cs-cert-ux-design",
+  "name": "Etzhayyim CS Certified — UX Design Specification",
+  "description": "certs.etzhayyim.com の UX 設計。セキュリティ認証バッジの表示、検証ページ、診断申請フローを定義。",
+  "dateCreated": "2026-02-28T00:00:00Z",
+  "ux:pages": [
+    {
+      "@type": "WebPage",
+      "name": "Landing Page",
+      "url": "https://certs.etzhayyim.com/",
+      "description": "Etzhayyim CS Certified サービスのランディングページ。認証レベル説明、検証フォーム、認証済みサイト一覧。",
+      "ux:layout": "single-column",
+      "ux:sections": [
+        {
+          "name": "Hero",
+          "description": "Etzhayyim CS Certified ロゴ + キャッチコピー「信頼されるサイトの証」",
+          "ux:components": [
+            "hero-banner",
+            "cert-level-cards"
+          ]
+        },
+        {
+          "name": "Verification Search",
+          "description": "ドメイン名を入力して認証状態を即座に確認できる検索バー",
+          "ux:components": [
+            "search-input",
+            "verification-result"
+          ]
+        },
+        {
+          "name": "Certification Levels",
+          "description": "3つの認証レベル (Basic/Standard/Advanced) をカード形式で表示。各レベルのチェック項目、有効期間、バッジカラーを明示。",
+          "ux:components": [
+            "level-card-basic",
+            "level-card-standard",
+            "level-card-advanced"
+          ]
+        },
+        {
+          "name": "Recently Certified",
+          "description": "最近認証されたサイトの一覧 (ドメイン, レベル, 発行日)",
+          "ux:components": [
+            "certified-list-table"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "name": "Verification Page",
+      "url": "https://certs.etzhayyim.com/verify/{certId}",
+      "description": "個別認証の検証ページ。証明書の詳細、診断スコア、有効期限、発行元を表示。",
+      "ux:layout": "two-column",
+      "ux:sections": [
+        {
+          "name": "Certificate Details",
+          "description": "認証 ID、対象ドメイン、組織名、認証レベル、発行日、有効期限、スコア",
+          "ux:components": [
+            "cert-detail-card",
+            "score-gauge"
+          ]
+        },
+        {
+          "name": "Badge Preview",
+          "description": "実際のバッジプレビューと埋め込みコード (HTML snippet)",
+          "ux:components": [
+            "badge-preview-svg",
+            "embed-code-block"
+          ]
+        },
+        {
+          "name": "Assessment Summary",
+          "description": "診断結果のサマリー。完了チェック数、検出事項、重要度別分布",
+          "ux:components": [
+            "checks-summary",
+            "findings-table"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "name": "Assessment Request",
+      "url": "https://certs.etzhayyim.com/request",
+      "description": "セキュリティ診断の申請ページ。対象ドメイン、組織情報、希望レベルを入力。",
+      "ux:layout": "form",
+      "ux:sections": [
+        {
+          "name": "Request Form",
+          "description": "診断対象ドメイン、組織名、連絡先、希望認証レベル、備考",
+          "ux:components": [
+            "domain-input",
+            "org-info-fields",
+            "level-selector",
+            "submit-button"
+          ]
+        }
+      ]
+    }
+  ],
+  "ux:badgeDesign": {
+    "@type": "CreativeWork",
+    "name": "Etzhayyim CS Certified Badge Design",
+    "description": "SVG ベースの認証バッジ。3レベルに対応するカラーバリエーション。",
+    "ux:variants": [
+      {
+        "name": "cs-basic-badge",
+        "description": "Basic 認証バッジ。緑色シールド + チェックマーク。",
+        "ux:color": "#4CAF50",
+        "ux:shape": "shield",
+        "ux:icon": "checkmark",
+        "ux:text": "Etzhayyim CS\nCERTIFIED",
+        "ux:subtext": "BASIC",
+        "ux:dimensions": {
+          "width": 120,
+          "height": 140
+        }
+      },
+      {
+        "name": "cs-standard-badge",
+        "description": "Standard 認証バッジ。青色シールド + スター。",
+        "ux:color": "#2196F3",
+        "ux:shape": "shield",
+        "ux:icon": "star",
+        "ux:text": "Etzhayyim CS\nCERTIFIED",
+        "ux:subtext": "STANDARD",
+        "ux:dimensions": {
+          "width": 120,
+          "height": 140
+        }
+      },
+      {
+        "name": "cs-advanced-badge",
+        "description": "Advanced 認証バッジ。紫色シールド + ダブルチェック。",
+        "ux:color": "#9C27B0",
+        "ux:shape": "shield",
+        "ux:icon": "double-check",
+        "ux:text": "Etzhayyim CS\nCERTIFIED",
+        "ux:subtext": "ADVANCED",
+        "ux:dimensions": {
+          "width": 120,
+          "height": 140
+        }
+      }
+    ],
+    "ux:embedMethods": [
+      {
+        "name": "JavaScript Widget",
+        "description": "非同期 JS スクリプトタグ。バッジ SVG + 検証リンク + ツールチップを動的レンダリング。",
+        "ux:code": "<script src=\"https://certs.etzhayyim.com/badge/{certId}.js\" async></script>"
+      },
+      {
+        "name": "Static SVG",
+        "description": "静的 SVG 画像 + 検証ページへのリンク。",
+        "ux:code": "<a href=\"https://certs.etzhayyim.com/verify/{certId}\"><img src=\"https://certs.etzhayyim.com/badge/{certId}.svg\" alt=\"Etzhayyim CS Certified\" /></a>"
+      },
+      {
+        "name": "JSON-LD Structured Data",
+        "description": "検索エンジン向け JSON-LD マークアップ。",
+        "ux:code": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org/\",\"@type\":\"Organization\",\"hasCredential\":{\"@type\":\"EducationalOccupationalCredential\",\"credentialCategory\":\"SecurityCertification\",\"recognizedBy\":{\"@type\":\"Organization\",\"name\":\"Etzhayyim CS Certified\",\"url\":\"https://certs.etzhayyim.com\"}}}</script>"
+      }
+    ]
+  }
+}

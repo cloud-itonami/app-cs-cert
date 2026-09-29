@@ -108,7 +108,7 @@ reference to the file beside them.
 
 ```bash
 git ls-files
-#   CLAUDE.md  NOTICE  PROJECT.jsonld  README.edn  migration.edn
+#   AGENTS.md  NOTICE  PROJECT.jsonld  README.edn  migration.edn
 #   content/certifications/seed.jsonld
 #   shacl/context.jsonld  shacl/shapes.jsonld
 #   ux/260228-cs-cert-ux-design.jsonld
@@ -119,7 +119,7 @@ git ls-files
 `etzhayyim/root` at `691c245d` — 7 tracked files, 26,847 bytes, `:go-files-created 0`.
 Seven plus the two records is the nine here.
 
-`CLAUDE.md` describes the service: an SSL-seal-style badge for sites that have passed a
+`AGENTS.md` describes the service: an SSL-seal-style badge for sites that have passed a
 security assessment, three certification levels, and four public surfaces at
 `certs.etzhayyim.com` — `/xrpc`, `/badge/{certId}.svg`, `/badge/{certId}.js`,
 `/verify/{certId}`.

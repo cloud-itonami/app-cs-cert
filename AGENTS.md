@@ -23,7 +23,7 @@ SSL trust seal のように、セキュリティ診断完了サイトが信頼�
 ```
 etzhayyim-project-cs-cert/
 ├── PROJECT.jsonld              # Project metadata
-├── CLAUDE.md                   # This file
+├── AGENTS.md                   # This file
 ├── content/certifications/     # Certificate and assessment data (JSON-LD)
 ├── shacl/                      # SHACL validation shapes
 │   ├── context.jsonld          # JSON-LD context
